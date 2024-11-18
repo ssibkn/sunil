@@ -1,56 +1,204 @@
-/* Responsiveness Fix for Menu */
-nav ul {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
     padding: 0;
+    background-color: #f9f9f9;
+}
+
+header {
+    text-align: center;
+    position: relative;
+}
+
+.banner {
+    width: 100%;
+    height: auto;
+}
+
+.login-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
+nav ul {
     list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
     background-color: #8b4513;
 }
 
 nav ul li {
-    margin: 5px;
+    margin: 0 10px;
 }
 
 nav ul li a {
     text-decoration: none;
     color: white;
-    padding: 8px 16px;
+    padding: 10px 20px;
+    display: inline-block;
+}
+
+nav ul li a:hover {
+    background-color: #a0522d;
 }
 
 .blinking-text {
     color: red;
     font-size: 1.2em;
     font-weight: bold;
-    animation: blink 2s steps(1, end) infinite;
+    animation: blink 3s steps(1, end) infinite;
 }
 
-/* Marquee for Personalities Section */
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+/* Main Content */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px;
+}
+
+.left-section {
+    width: 30%;
+    padding: 10px;
+}
+
+.right-section {
+    width: 100%;
+    padding: 10px;
+}
+
+.section {
+    margin-bottom: 20px;
+    background: #fff;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.personalities-marquee {
+    width: 100%;
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.personalities {
+    display: inline-flex;
+    gap: 20px;
+    padding-left: 100%; /* Start from the right edge */
+    animation: scroll-left 10s linear infinite; /* Fallback animation */
+}
+
 .marquee-wrapper {
     position: relative;
     overflow: hidden;
-    height: 240px;
+    width: 100%;
+    height: 240px; /* Adjust height as needed */
+    background-color: #f9f9f9; /* Optional: background color */
 }
 
 .marquee-content {
     display: flex;
-    gap: 20px;
-    animation: scroll-left 30s linear infinite;
+    gap: 50px;
+    position: absolute;
+    white-space: nowrap;
+    animation: scroll-marquee 50s linear infinite;
+    
 }
 
-@keyframes scroll-left {
-    from {
-        transform: translateX(100%);
+.profile {
+    flex: 0 0 auto;
+    text-align: center;
+    width: 200px; /* Width of each profile */
+}
+
+.profile img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+/* Keyframes for Smooth Scroll */
+@keyframes scroll-marquee {
+    0% {
+        transform: translateX(100%); /* Start from right edge */
     }
-    to {
-        transform: translateX(-100%);
+    100% {
+        transform: translateX(-100%); /* Scroll to the left */
     }
 }
 
-/* Media Queries */
+/* Adjust for small screens */
 @media (max-width: 768px) {
+    .profile {
+        width: 150px;
+    }
+    .marquee-wrapper {
+        height: 120px;
+    }
+}
+
+}
+.read-more {
+    display: inline-block;
+    background: #8b4513;
+    color: white;
+    padding: 5px 10px;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+
+
+/* Footer */
+footer {
+    background-color: #8b4513;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+/* Media Queries for Responsiveness */
+
+/* For devices smaller than 768px (e.g., tablets, small screens) */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+    .left-section, .right-section {
+        width: 100%;
+    }
     nav ul {
         flex-direction: column;
-        align-items: center;
+    }
+    nav ul li {
+        margin: 5px 0;
+    }
+}
+
+/* For devices smaller than 480px (e.g., smartphones) */
+@media (max-width: 480px) {
+    .banner {
+        height: auto;
+    }
+    .profile {
+        width: 100%;
+        margin: 10px 0;
+    }
+    .login-btn button {
+        padding: 5px;
     }
 }
